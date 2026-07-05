@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Blast - Premium Desktop Application</title>
+    <meta name="description" content="Kirim pesan masal dan terjadwal secara aman, mandiri, dan 100% lokal. Dilengkapi fitur System Tray, antrean SQLite, dan keamanan kriptografis.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F8F9FA;
+            color: #0F172A;
+        }
+        .neo-card {
+            border: 2px solid #0F172A;
+            box-shadow: 4px 4px 0px 0px #0F172A;
+            border-radius: 12px;
+            background-color: #ffffff;
+            transition: all 0.1s ease-in-out;
+        }
+        .neo-card:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #0F172A;
+        }
+        .neo-btn-primary {
+            background-color: #4F46E5;
+            color: #ffffff;
+            border: 2px solid #0F172A;
+            box-shadow: 4px 4px 0px 0px #0F172A;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.1s ease-in-out;
+        }
+        .neo-btn-primary:hover {
+            background-color: #4338CA;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px 0px #0F172A;
+        }
+        .neo-btn-primary:active {
+            transform: translate(2px, 2px);
+            box-shadow: 0px 0px 0px 0px #0F172A;
+        }
+        .neo-btn-secondary {
+            background-color: #ffffff;
+            color: #0F172A;
+            border: 2px solid #0F172A;
+            box-shadow: 3px 3px 0px 0px #0F172A;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.1s ease-in-out;
+        }
+        .neo-btn-secondary:hover {
+            background-color: #F1F5F9;
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px 0px #0F172A;
+        }
+        .neo-btn-secondary:active {
+            transform: translate(1px, 1px);
+            box-shadow: 0px 0px 0px 0px #0F172A;
+        }
+    </style>
+</head>
+<body class="font-sans antialiased">
+
+    <!-- Header Section -->
+    <header class="max-w-6xl mx-auto px-4 py-6 flex items-center justify-between border-b-2 border-slate-900">
+        <div class="flex items-center gap-3">
+            <span class="text-3xl">🚀</span>
+            <span class="font-extrabold text-xl tracking-tight">WhatsApp Blast</span>
+        </div>
+        <div>
+            <a href="https://github.com/lintang-dwi/bot-wa/releases" target="_blank" class="neo-btn-secondary px-5 py-2.5 inline-block text-sm">
+                GitHub Repo
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="max-w-5xl mx-auto px-4 py-16 text-center">
+        <div class="inline-block bg-indigo-50 border-2 border-indigo-600 text-indigo-700 text-xs font-bold px-3 py-1.5 rounded-full mb-6">
+            🎉 Versi Terbaru v1.0.4 - Security Hardening & Tray Mode
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight leading-none mb-6">
+            Kirim Pesan WhatsApp Masal & Terjadwal Secara <span class="text-indigo-600">Aman & Mandiri</span>
+        </h1>
+        <p class="text-lg md:text-xl text-slate-600 font-medium max-w-3xl mx-auto mb-10 leading-relaxed">
+            WhatsApp Blast adalah aplikasi desktop Windows premium yang beroperasi sepenuhnya di sisi lokal komputer Anda (self-hosted). Mengamankan 100% privasi data Anda tanpa server perantara pihak ketiga.
+        </p>
+
+        <!-- CTAs -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16">
+            <a href="https://github.com/lintang-dwi/bot-wa/releases/latest" class="neo-btn-primary px-8 py-4 text-lg w-full sm:w-auto text-center">
+                Download Aplikasi (.exe)
+            </a>
+            <a href="#features" class="neo-btn-secondary px-8 py-4 text-lg w-full sm:w-auto text-center">
+                Pelajari Fitur
+            </a>
+        </div>
+
+        <!-- Features Grid -->
+        <section id="features" class="grid md:grid-cols-3 gap-8 text-left py-8">
+            <!-- Feature 1 -->
+            <div class="neo-card p-6">
+                <div class="text-3xl mb-4">🛡️</div>
+                <h3 class="text-lg font-bold mb-2">Keamanan Kriptografi</h3>
+                <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                    Setiap rilis biner diproteksi secara digital menggunakan verifikasi checksum **SHA256** dan tanda tangan **Ed25519** untuk menjamin file aman dari manipulasi.
+                </p>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="neo-card p-6">
+                <div class="text-3xl mb-4">📥</div>
+                <h3 class="text-lg font-bold mb-2">Antrean Tangguh (SQLite)</h3>
+                <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                    Jika aplikasi ditutup atau komputer mati mendadak, sisa pengiriman tersimpan aman dalam database lokal SQLite dan otomatis dilanjutkan saat aplikasi dibuka kembali.
+                </p>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="neo-card p-6">
+                <div class="text-3xl mb-4">📦</div>
+                <h3 class="text-lg font-bold mb-2">Background System Tray</h3>
+                <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                    Aplikasi dapat ditutup secara rapi ke System Tray di taskbar Windows untuk terus memproses antrean pesan blast tanpa mengganggu jalannya pekerjaan Anda.
+                </p>
+            </div>
+        </section>
+
+        <!-- How it works -->
+        <section class="mt-24 text-left neo-card p-8 md:p-12">
+            <h2 class="text-3xl font-extrabold mb-6">Cara Memulai WhatsApp Blast</h2>
+            <ol class="space-y-6 text-slate-600 font-medium">
+                <li class="flex gap-4">
+                    <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border-2 border-slate-900 bg-indigo-100 font-bold text-slate-900">1</span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-lg">Unduh Berkas Aplikasi</h4>
+                        <p class="text-sm mt-1">Unduh berkas `whatsapp-blast.exe` portabel dari halaman resmi rilis GitHub kami.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border-2 border-slate-900 bg-indigo-100 font-bold text-slate-900">2</span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-lg">Jalankan Aplikasi & Hubungkan Akun</h4>
+                        <p class="text-sm mt-1">Klik ganda berkas tersebut di Windows, lalu scan QR Code menggunakan WhatsApp di ponsel Anda untuk menghubungkan sesi secara lokal.</p>
+                    </div>
+                </li>
+                <li class="flex gap-4">
+                    <span class="flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full border-2 border-slate-900 bg-indigo-100 font-bold text-slate-900">3</span>
+                    <div>
+                        <h4 class="font-bold text-slate-900 text-lg">Kirim Pesan Secara Mandiri</h4>
+                        <p class="text-sm mt-1">Impor kontak, susun isi pesan, lampirkan media, dan jadwalkan blast Anda dengan aman di komputer Anda sendiri.</p>
+                    </div>
+                </li>
+            </ol>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 mt-24 border-t-4 border-indigo-600">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl">🚀</span>
+                <span class="font-bold text-white tracking-tight">WhatsApp Blast</span>
+            </div>
+            <div class="text-sm text-center md:text-right font-medium">
+                <p>&copy; 2026 WhatsApp Blast. 100% Free & Open-Source Releases.</p>
+                <p class="mt-1 text-slate-500">Seluruh data sesi login disimpan lokal secara aman di komputer Anda.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
