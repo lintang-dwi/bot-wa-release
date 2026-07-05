@@ -1,0 +1,24 @@
+# ==========================================
+# GITHUB RELEASE REPOSITORY .GITIGNORE
+# ==========================================
+
+# Private cryptographic keys (SANGAT KRITIS!)
+keys/
+*.key
+
+# Local builds and compiled release tool binaries
+dist/
+release-tool/
+go.mod
+config.yaml
+
+# OS temporary files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & temp files
+*.log
+*.tmp
+*.bak
+
