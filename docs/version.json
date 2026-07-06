@@ -1,13 +1,13 @@
 {
   "version": "1.0.4",
   "url": "https://github.com/lintang-dwi/bot-wa-release/releases/download/v1.0.4/whatsapp-blast-setup-v1.0.4.exe",
-  "sha256": "d9d180dfd1dd947123d0b5564001a43b5b257953e55d99c370132aeab7b5df52",
-  "signature": "1My1H03IHJj8yE47f28YLzY+kSFSr7ze86P5MlzbpP+pr1Ny4B7XlWLo+N8UQkBS/P41safLo6G1rWPVa/E+DQ==",
-  "size": 11972275,
-  "release_date": "2026-07-06T14:22:48Z",
+  "sha256": "9f699a44e399a39395afee45ef541831e5ff3e073cc53cf073fd054701054679",
+  "signature": "aR32LXJArm/aProXWfJmaFxTSnEf47z7LQjmfgCPE8ouf9NOgibxV+S5/D4X1NrM5dA8pXN5sYRtvXuiNp6lCQ==",
+  "size": 11983458,
+  "release_date": "2026-07-06T14:37:58Z",
   "portable": {
-    "sha256": "eea0231fc53a717a27f5d2f06a6d481eb2efdd060de6c1c1443ba6adfafcbee1",
-    "signature": "cCEnwPKFzXD/uPn7YX++1wB9Fia/gqiMjANsIo/JTuVvBBD8oSaNWESmYqML3jQJfBZzUT8AzkQ2WQ0G1RDaAA==",
-    "size": 27589120
+    "sha256": "00c7c714764562d14edd14626dde6dff6f1560a23d6c73fdc9a5e0a5edf83c79",
+    "signature": "ciZR0qaSP4lwE21B+bCX79LQ1ESi2wrcWexJN7FL9pseykJQMHAYJ0wFfRPHEtL6CTYQ2G5/7cRmmF0RIB5aAg==",
+    "size": 27634176
   }
 }
