@@ -1,78 +1,38 @@
-# WhatsApp Blast - Release Repository & Developer Guide
+# WhatsApp Blast - Premium Desktop Application
 
-Repositori ini digunakan untuk mengelola rilis aplikasi **WhatsApp Blast**, menghasilkan installer setup, membuat berkas **Delta Update** (patch), menandatangani berkas biner secara digital dengan **Ed25519**, serta mempublikasikan pembaruan ke GitHub Releases dan GitHub Pages.
+Aplikasi desktop **WhatsApp Blast** premium dirancang khusus untuk membantu pemilik bisnis, pemasar (*marketer*), dan organisasi dalam melakukan pengiriman pesan massal (*blast*) serta penjadwalan pesan WhatsApp secara mandiri, aman, dan tangguh.
 
----
-
-## 📁 Struktur Dokumentasi (Folder `docs/`)
-Seluruh dokumentasi teknis dan panduan pengembangan aplikasi telah disatukan ke dalam folder [`docs/`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/):
-- **[`Convert.md`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/Convert.md)**: Analisis mendalam fitur utama, alur kerja (manajemen sesi, antrean SQLite, dll.), serta rencana migrasi dari library JavaScript ke Go Whatsmeow.
-- **[`Whatsmeow peningkatan.md`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/Whatsmeow%20peningkatan.md)**: Panduan detail penanganan event WhatsApp, manajemen koneksi chat/media, sinkronisasi kontak/grup, dan penanganan timeout/reconnect menggunakan library Go Whatsmeow.
-- **[`whatsmeow-guide.md`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/whatsmeow-guide.md)**: Panduan lengkap instalasi, integrasi event handler, pengiriman pesan teks/media, dan pengelolaan sesi Whatsmeow.
-- **[`whatsmeow_features.md`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/whatsmeow_features.md)**: Rincian fitur-fitur Whatsmeow seperti multi-device login, sinkronisasi riwayat obrolan offline, dan pengiriman media terenkripsi secara native.
-- **[`github_publish_guide.md`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/docs/github_publish_guide.md)**: Panduan langkah-demi-langkah setup token rilis GitHub, pembuatan rilis tag baru, dan alur publikasi manual/otomatis.
+Aplikasi ini berjalan sepenuhnya di komputer lokal Anda (*self-hosted*). Artinya, seluruh data akun, nomor kontak, pesan, dan aktivitas pengiriman disimpan secara lokal di harddisk Anda, **tidak dikirim ke server pihak ketiga mana pun**, menjamin keamanan dan kerahasiaan informasi Anda 100%.
 
 ---
 
-## 🛠️ Persiapan Sebelum Melakukan Rilis
-Sebelum menjalankan perintah rilis, pastikan lingkungan pengembangan Anda sudah siap:
+## 🎯 Untuk Apa Aplikasi Ini? (Fungsi & Kegunaan)
 
-1. **GitHub Token**:
-   Set environment variable `GITHUB_TOKEN` di terminal Anda agar release-tool dapat membuat rilis otomatis di GitHub dan mengunggah aset:
-   ```powershell
-   $env:GITHUB_TOKEN="your_personal_access_token_here"
-   ```
-2. **Kunci Ed25519**:
-   Kunci privat untuk tanda tangan digital berada di `keys/private.key` (terbaca dari `config.yaml`). Jangan pernah membagikan berkas kunci privat ini ke publik! Kunci publik terkait telah di-embed ke dalam biner klien `bot-wa`.
+Aplikasi ini digunakan untuk menyederhanakan aktivitas promosi, edukasi pelanggan, dan komunikasi massal melalui WhatsApp:
+
+- **Efisien & Hemat Waktu**: Mengirimkan informasi promosi, pengumuman, atau notifikasi penting ke ribuan nomor pelanggan secara otomatis tanpa perlu mengetik satu-persatu.
+- **Promosi Terjadwal**: Merencanakan kampanye promosi terlebih dahulu dengan mengatur tanggal dan waktu pengiriman pesan yang spesifik.
+- **Jeda Waktu Aman (Anti-Spam)**: Mengatur interval pengiriman antarpesan secara cerdas (misalnya jeda beberapa detik) untuk meniru perilaku manusia normal, sehingga meminimalkan risiko nomor WhatsApp Anda terblokir.
+- **Manajemen Pelanggan Mandiri**: Mengelompokkan nomor-nomor pelanggan ke dalam grup lokal dalam aplikasi guna mempermudah penargetan pengiriman pesan yang berbeda.
 
 ---
 
-## 🚀 Alur Rilis Update & Installer Baru
+## ⭐️ Fitur Unggulan
 
-Proses rilis, kompilasi, obfuscation (garble), pembuatan installer NSIS, pembuatan delta patch, dan publikasi ke GitHub dilakukan sepenuhnya secara otomatis melalui berkas **`release-tool`**.
-
-### Langkah-Langkah Rilis:
-
-1. Buka berkas **[`config.yaml`](file:///d:/Project%20Production/Whatsapp%20Blast/bot-wa-release/config.yaml)**.
-2. Atur nomor versi baru pada field `version` (misalnya `"1.0.6"`).
-3. Atur catatan rilis pada field `description` (misalnya `"Rilis versi 1.0.6 - Perbaikan bug koneksi"`).
-4. Pastikan `build.output` menunjuk ke `"dist/whatsapp-blast-payload.dat"` dan `build.obfuscated: true`.
-5. Jalankan perintah kompilasi dan rilis di folder `bot-wa-release`:
-   ```powershell
-   go run ./release-tool
-   ```
-
-### Apa yang Terjadi di Balik Layar saat Perintah Dijalankan?
-1. **Auto-Sync Versi**: Versi di `config.yaml` disinkronkan secara otomatis ke `wails.json` dan `app_update.go` (konstanta `AppVersion`) di repositori `bot-wa`.
-2. **Build Obfuscated**: Proyek utama `bot-wa` dikompilasi menggunakan `wails build -clean -nsis -obfuscated` dengan enkripsi string/literal via Garble.
-3. **Penyusunan Output Dist**:
-   - Biner portable hasil kompilasi diganti namanya menjadi `whatsapp-blast-payload-v<versi>.dat` (tidak menggunakan ekstensi `.exe` agar user tidak mengunduh payload langsung).
-   - Installer setup NSIS dipindahkan ke `dist/whatsapp-blast-payload-v<versi>-setup.exe`.
-4. **Pembuatan Delta Patch (bsdiff)**:
-   - Tool membaca versi rilis sebelumnya dari `docs/version.json` (misalnya `v1.0.5`).
-   - Mengunduh payload `.dat` lama dari rilis GitHub v1.0.5 secara otomatis ke folder lokal.
-   - Membandingkan biner lama v1.0.5 dengan biner baru v1.0.6 secara byte-to-byte menggunakan `bsdiff.Bytes` di memori RAM.
-   - Menghasilkan berkas **`whatsapp-blast-1.0.5_to_1.0.6.patch`** (biasanya berukuran sangat kecil, hanya ~1-2 MB).
-5. **Penandatanganan Keamanan (Ed25519)**:
-   - Menghasilkan checksum SHA256 dari installer setup, biner payload `.dat`, dan berkas `.patch`.
-   - Menandatangani berkas installer setup, payload `.dat`, dan berkas `.patch` menggunakan kunci privat Ed25519.
-   - Menulis file metadata `dist/version.json` dan menyalinnya ke `docs/version.json`.
-6. **Upload & Publish GitHub**:
-   - Membuat rilis baru di GitHub sesuai versi target, lalu mengunggah aset rilis (`-setup.exe`, `.dat` payload, dan `.patch`).
-   - Melakukan `git commit` dan `git push` otomatis untuk berkas `docs/version.json` agar terpublikasi di GitHub Pages untuk dibaca oleh fitur auto-updater klien.
+- **🚀 Blast Pesan Massal & Terjadwal**: Mengirim pesan berupa teks maupun media (Gambar, PDF, Dokumen, Video) ke banyak kontak sekaligus secara terjadwal dengan aman.
+- **📥 Sinkronisasi Kontak & Grup**: Impor dan sinkronisasikan seluruh daftar kontak serta grup WhatsApp Anda secara instan dari perangkat Anda ke aplikasi.
+- **🛡️ Penyelamatan Antrean Pesan**: Jika komputer mati mendadak atau koneksi terputus saat proses pengiriman berjalan, sisa antrean pesan tersimpan aman di database lokal. Aplikasi akan otomatis melanjutkan sisa pengiriman saat dibuka kembali.
+- **📦 Bekerja di Latar Belakang (System Tray)**: Aplikasi dapat diminimalkan (*minimize*) ke system tray (taskbar pojok kanan bawah). Aplikasi tetap akan mengirimkan pesan di latar belakang sementara Anda bebas menggunakan komputer untuk pekerjaan lain.
+- **⚡ Pembaruan Otomatis yang Cepat & Aman**: Aplikasi mendeteksi pembaruan versi baru secara otomatis. Proses pembaruan berjalan sangat cepat dan hemat kuota internet karena hanya mengunduh data tambalan yang kecil.
 
 ---
 
-## 📥 Mekanisme Update di Sisi Pengguna (Aplikasi Klien)
+## 📥 Cara Pemasangan (Instalasi) bagi Pengguna
 
-Aplikasi klien yang telah terpasang memiliki logika pembaruan cerdas sebagai berikut:
-1. **Check Updates**: Klien membaca berkas `version.json` yang di-host di GitHub Pages.
-2. **Delta Update (Utama)**:
-   - Jika versi lama klien terdeteksi dalam blok `delta` (misal dari v1.0.5 ke v1.0.6), aplikasi hanya mengunduh berkas patch `.patch` yang kecil (~1.5 MB).
-   - Memverifikasi tanda tangan Ed25519 berkas patch tersebut.
-   - Membaca biner berjalan klien ke RAM, lalu menerapkan patch di memori untuk menghasilkan biner baru.
-   - Memverifikasi biner baru hasil patch dengan data `portable` di metadata.
-   - Melakukan penggantian file biner berjalan dengan aman (dengan skema backup/rollback jika gagal), lalu me-restart aplikasi secara otomatis.
-3. **Full Installer Fallback (Cadangan)**:
-   - Jika delta update gagal atau tidak tersedia untuk versi lama klien, aplikasi akan mengunduh installer setup (`whatsapp-blast-payload-v<versi>-setup.exe`, ~12 MB).
-   - Menjalankan installer setup secara normal di sistem operasi pengguna untuk memperbarui seluruh berkas aplikasi, kemudian me-restart aplikasi.
+Untuk mulai menggunakan WhatsApp Blast, silakan ikuti langkah-langkah mudah berikut:
+
+1. Klik menu **[Releases](https://github.com/lintang-dwi/bot-wa-release/releases)** di bagian kanan halaman ini.
+2. Temukan versi rilis terbaru (berlabel **Latest**).
+3. Di bawah bagian **Assets**, unduh berkas installer yang berakhiran setup: **`whatsapp-blast-payload-v[Versi]-setup.exe`**.
+4. Buka berkas installer yang telah diunduh, lalu ikuti petunjuk pemasangan hingga selesai.
+5. Setelah instalasi selesai, centang pilihan untuk langsung menjalankan aplikasi, lalu klik **Finish**. Aplikasi akan terbuka dan siap digunakan!
