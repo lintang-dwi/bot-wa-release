@@ -1,20 +1,13 @@
 {
   "version": "1.0.5",
   "url": "https://github.com/lintang-dwi/bot-wa-release/releases/download/v1.0.5/whatsapp-blast-payload-v1.0.5-setup.exe",
-  "sha256": "4e3907b059123247671de182685aa3fa834cea09c043d56aa74db20fd1945a74",
-  "signature": "VN/xQC75z1jF0qXjoZyFyJHLs7osBz1LaA5rS6PtrSg8ttXbG7t26lK36X/hDanTvGf8fDRriOjnNZWuAwo3BA==",
-  "size": 11976587,
-  "release_date": "2026-07-06T17:58:30Z",
+  "sha256": "54a3ef3a1a61b25920cffb25932b4118ba6c99c92c9c0e9df6aab077ffa3935c",
+  "signature": "ZuxHPADpn+dihsmTXldC+LqlTRS9Rbsfg6+aTZX2dZpEos0I7V0k3rMWBJ5rbUlhuwo+Rl6GI7kHVpBvceDCCA==",
+  "size": 11991220,
+  "release_date": "2026-07-06T18:01:30Z",
   "portable": {
-    "sha256": "7f499f9440633565511f007becc82930c48ae59cc5eb997a6d6acd2f11faf23b",
-    "signature": "BTnW80LSctFm8LCCyDh2gSjLJ9eXb2tgGhOZZBj9gzw/UUfcV7AdkC2CCPOfo4veIVXZmGhudJL8s0M6NVxeAA==",
-    "size": 27614720
-  },
-  "delta": {
-    "from": "1.0.4",
-    "url": "https://github.com/lintang-dwi/bot-wa-release/releases/download/v1.0.5/whatsapp-blast-1.0.4_to_1.0.5.patch",
-    "sha256": "8b07ea28eb8c79fa3d61fd67ec07aed950621a714d4c2b0738aafeb9f9754de0",
-    "signature": "PRrwsE3Y/Pytv2ezfgL48n4rYq4/1yL60miT6Zm3SRsMYFIBho4veRSW3utaFvW93WQ+7DIqp/cbn+SIsujpBQ==",
-    "size": 1461054
+    "sha256": "9c5fc5a42afd63791ccad8b528975afbcc2d36a1bbf2b9ace079f93f8c552460",
+    "signature": "67xY8T3XFjzoHMIRDKPLqo0nOsT0zY3frNUIGL0SlBOYe9aev+fO7rP7hFvovkyC1o5EkWt4JO5ARdSMCtU2Bw==",
+    "size": 27655680
   }
 }
