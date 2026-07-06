@@ -1,0 +1,4 @@
+github.com/dsnet/compress v0.0.0-20171208185109-cc9eb1d7ad76 h1:eX+pdPPlD279OWgdx7f6KqIRSONuK7egk+jDx7OM3Ac=
+github.com/dsnet/compress v0.0.0-20171208185109-cc9eb1d7ad76/go.mod h1:KjxHHirfLaw19iGT70HvVjHQsL1vq1SRQB4yOsAfy2s=
+github.com/gabstv/go-bsdiff v1.0.3 h1:AoVQ3tROmOqWjl8s3CoQu17IUJwHJOGQcVmw2nb7kww=
+github.com/gabstv/go-bsdiff v1.0.3/go.mod h1:/Zz6GK+/f/TMylRtVaW3uwZlb0FZITILfA0q12XKGwg=

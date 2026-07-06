@@ -8,6 +8,7 @@ keys/
 
 # Local builds and compiled release tool binaries
 dist/
+docs/
 release-tool/
 go.mod
 config.yaml
